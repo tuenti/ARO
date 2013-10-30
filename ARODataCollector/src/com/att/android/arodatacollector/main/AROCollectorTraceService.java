@@ -1779,7 +1779,16 @@ public class AROCollectorTraceService extends Service {
 	 * Starts the bluetooth peripherals trace collection
 	 */
 	private void startAROBluetoothTraceMonitor() {
-		switch (BluetoothAdapter.getDefaultAdapter().getState()) {
+		BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
+		int state;
+
+		if(bluetooth != null) {
+			state = bluetooth.getState();
+		} else {
+			state = BluetoothAdapter.STATE_OFF;
+		}
+
+		switch (state) {
 		case BluetoothAdapter.STATE_ON:
 			if (BluetoothAdapter.getDefaultAdapter().getBondedDevices().isEmpty()) {
 				writeTraceLineToAROTraceFile(mBluetoothTracewriter,
