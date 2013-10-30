@@ -209,8 +209,11 @@ public class AROCollectorMainActivity extends Activity {
 				}
 				
 				final String state = Environment.getExternalStorageState();
-				NetworkInfo.State wifiState = mAROConnectiviyMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-				NetworkInfo.State mobileState = mAROConnectiviyMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+
+				NetworkInfo networkInfoWifi = mAROConnectiviyMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+				NetworkInfo networkInfoMobile = mAROConnectiviyMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+				NetworkInfo.State wifiState = (networkInfoWifi != null) ? networkInfoWifi.getState() : NetworkInfo.State.DISCONNECTED;
+				NetworkInfo.State mobileState = (networkInfoMobile != null) ? networkInfoMobile.getState() : NetworkInfo.State.DISCONNECTED;
 				AROLogger.d(TAG, "wifiState=" + wifiState + "; mobileState=" + mobileState);
 				
 				// Check to validate is SD card is available for writing trace
