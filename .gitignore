@@ -1,2 +1,7 @@
-
 .DS_Store
+ARODataCollector/local.properties
+ARODataCollector/bin/
+ARODataCollector/gen/
+ARODataCollector/libs/armeabi/
+ARODataCollector/libs/x86/
+ARODataCollector/obj/
